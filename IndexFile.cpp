@@ -26,8 +26,7 @@ void IndexFile::initialBuild(string filename){
 	BinFile.write(reinterpret_cast<char *>(&record), sizeof(record));
 	for(int i = 1; i <= size; i++){
 	    RawFile >> record.key >> record.str >> record.count >> record.cost;
-	    BinFile.write(reinterpret_cast<char *>(&record), sizeof(record)); 
-	    //cout << "record added\n";
+	    BinFile.write(reinterpret_cast<char *>(&record), sizeof(record));
 	    indexList[record.key] = i;
 	}
         write(indexList);
@@ -35,7 +34,7 @@ void IndexFile::initialBuild(string filename){
         RawFile.close();
 	BinFile.close();
     } else
-	cout << "error opening file in initialIndexFileBuild"<<endl;;
+	cout << "error opening file in initialIndexFileBuild"<<endl;
 }
 
 map<int,int> IndexFile::loadList(string filename){
@@ -70,25 +69,23 @@ void IndexFile::write(map<int,int> indexList){
 }
 
 
-
-
 void IndexFile::search(const char* strKey){
 
     fstream BinFile;
-    map<int,int> indexList =loadList("../instr/prog5.dat");
-
+    IndexFile iFile;
+    map<int, int> indexList = iFile.loadList("prog5.idx");
     //open original file then get the header size
+
     BinFile.open("./prog5.bin", fstream::in | fstream::binary);
-    char * buffer = new char[BUFFSIZE+1];
 
     //finds record position, reads in record
     Record record;
-    int rrn = indexList[atoi(strKey)];//auto bin search. may need manual search of array from up there^^
+    int rrn = indexList[atoi(strKey)];
+
     BinFile.seekg(rrn * sizeof(record));
     BinFile.read(reinterpret_cast<char *>(&record), sizeof(record));
 
     cout << record.key << " " << record.str << " " << record.count << " " << record.cost << endl;
 
     BinFile.close();
-    delete[] buffer;
 }
