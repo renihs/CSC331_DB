@@ -11,5 +11,5 @@ class IndexFile{
 	void initialBuild(std::string);
 	std::map<int,int> loadList(std::string);
 	void write(std::map<int,int>);
-	void search(const char* strKey);
+	void search(const char*);
 };
