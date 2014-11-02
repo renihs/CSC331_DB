@@ -15,43 +15,23 @@
 using namespace std;
 
 
-int Record::getCode() const
-{
-	return code;
-}
 
-void Record::setCode(int code)
-{
-	this->code = code;
-}
-
-double Record::getCost() const
-{
-	return cost;
-}
-
-void Record::setCost(double cost)
-{
-	this->cost = cost;
-}
-
-int Record::getKey() const
+int PrimaryIndex::getKey() const
 {
 	return key;
 }
 
-void Record::setKey(int key)
+void PrimaryIndex::setKey(int key)
 {
 	this->key = key;
 }
 
-const string& Record::getName() const
+int PrimaryIndex::getRelativeRecordNumber() const
 {
-	return name;
+	return relativeRecordNumber;
 }
 
-void Record::setName(const string& name)
+void PrimaryIndex::setRelativeRecordNumber(int relativeRecordNumber)
 {
-	this->name = name;
+	this->relativeRecordNumber = relativeRecordNumber;
 }
-
