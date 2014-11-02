@@ -14,6 +14,29 @@
 #include "FileSystem.h"
 using namespace std;
 
+/**
+ * Default Constructor
+ * Sets key, name, code, and cost to 0, " blank ", 0, and 0.0, respectively
+ */
+Record::Record()
+{
+	setKey(0);
+	setName(" blank ");
+	setCode(0);
+	setCost(0.0);
+}
+
+/**
+ * Initialization Constructor
+ * Uses constructor arguments to set the key, name, code, and cost
+ */
+Record::Record(int keyInit, string nameInit, int codeInit, double costInit)
+{
+	setKey(keyInit);
+	setName(nameInit);
+	setCode(codeInit);
+	setCost(costInit);
+}
 
 int Record::getCode() const
 {
