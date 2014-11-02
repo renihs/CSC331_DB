@@ -15,6 +15,25 @@
 using namespace std;
 
 
+/**
+ * Default Constructor
+ * Sets key and relativeRecordNumber to zero
+ */
+PrimaryIndex::PrimaryIndex()
+{
+	setKey(0);
+	setRelativeRecordNumber(0);
+}
+
+/**
+ * Initialization Constructor
+ * Uses constructor arguments to set the key and RRN (relative record number) values
+ */
+PrimaryIndex::PrimaryIndex(int keyInit, int relativeRecordNumberInit)
+{
+	setKey(keyInit);
+	setRelativeRecordNumber(relativeRecordNumberInit);
+}
 
 int PrimaryIndex::getKey() const
 {
