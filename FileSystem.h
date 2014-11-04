@@ -39,7 +39,7 @@ public:
 	int getKey() const;
 	void setKey(int key);
 	const std::string& getName() const;
-	void setName(const std::string& name);
+	void setName(std::string& name);
 };
 
 class PrimaryIndex

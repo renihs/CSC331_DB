@@ -21,8 +21,9 @@ using namespace std;
  */
 Record::Record()
 {
+	string str = " blank ";
 	setKey(0);
-	setName(" blank ");
+	setName(str);
 	setCode(0);
 	setCost(0.0);
 }
@@ -74,8 +75,20 @@ const string& Record::getName() const
 	return name;
 }
 
-void Record::setName(const string& name)
+void Record::setName(string& name)
 {
-	this->name = name;
+	if (name.size() < 7) // Check if string needs to be padded with spaces
+	{
+		int numSpaces = 7 - name.size(); // Determine number of spaces to add
+		for (int i = 0; i < numSpaces; i++) // Loop pads with appropriate number of spaces
+			name += " ";
+		this->name = name; // Assign padded name to the name member variable
+	}
+	else if (name.size() > 7) // If string is too large
+	{
+		this->name = name.substr(0, 7); // Truncate and assign argument string
+	}
+	else
+		this->name = name;
 }
 
