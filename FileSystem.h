@@ -58,4 +58,8 @@ public:
 };
 
 
+// Function prototypes
+
+void updatePrimaryIndexFile(Record& record); // Updates the primary index file using the argument Record
+
 #endif /* FILESYSTEM_H_ */
