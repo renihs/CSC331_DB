@@ -60,6 +60,6 @@ public:
 
 // Function prototypes
 
-void updatePrimaryIndexFile(Record& record); // Updates the primary index file using the argument Record
+void updatePrimaryIndexFile(const int& key, const int& relativeRecordNumber); // Updates the primary index file using the argument values
 
 #endif /* FILESYSTEM_H_ */
