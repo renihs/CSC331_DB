@@ -13,7 +13,7 @@
 // Preprocessor Directives
 #include "FileSystem.h"
 using namespace std;
-
+/*
 int main(int argc, char * argv[])
 {
 	fstream outputFile("file.bin", ios::binary | ios::out | ios::app | ios::ate); // Open output binary file in append mode, cursor at the end (ate)
@@ -53,10 +53,9 @@ int main(int argc, char * argv[])
 
 	outputFile.close(); // Terminate program connection with output data file
 
-	cout << sizeof(Record) << endl;
-
 	return 0; // Return successful program run
 }
+*/
 
 /**
  * Updates the primary index file using the argument Record's RRN and key values
@@ -74,7 +73,7 @@ void updatePrimaryIndexFile(const int &key, const int &relativeRecordNumber)
 
 	PrimaryIndex index(key, relativeRecordNumber); // Create new primary index object to write to index output file
 
-	primaryIndexFile.write((char *) &index, sizeof(Record)); // Write new primary index object out to the primary index file
+	primaryIndexFile.write((char *) &index, sizeof(PrimaryIndex)); // Write new primary index object out to the primary index file
 
 	primaryIndexFile.close(); // Terminate program/file connection with index file
 }

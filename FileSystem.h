@@ -14,6 +14,7 @@
 #include <fstream> // For file I/O to read input file
 #include <cstdlib> // For use of exit
 #include <string> // Needed to use string objects
+#include <vector> // For reading in variable number of index files
 
 
 #ifndef FILESYSTEM_H_ // Check for namespace collisions
@@ -61,5 +62,8 @@ public:
 // Function prototypes
 
 void updatePrimaryIndexFile(const int& key, const int& relativeRecordNumber); // Updates the primary index file using the argument values
+int search(int key); // Function searches the index file for the target primary key and returns the index record's RRN
+int binarySearch(const std::vector<PrimaryIndex>& indexes, int target); // Called by search function to perform actual search using binary search algorithm
+void insertionSort(std::vector<PrimaryIndex>& indexes); // Called by search function to perform an insertion sort on the PrimaryIndex objects
 
 #endif /* FILESYSTEM_H_ */

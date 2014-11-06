@@ -16,6 +16,7 @@ using namespace std;
 
 int main(int argc, char * argv[])
 {
+	// TODO: ADD COMMAND-LINE ERROR CHECKING
 	int targetRRN = search(atoi(argv[1])); // Call search function and assign its return value to local variable
 
 	if (targetRRN == -1)
@@ -40,7 +41,6 @@ int search(int key)
 		exit(1); // End program run with error value
 	}
 
-	bool found = false; // Flag for finding the target record
 	int location; // Will hold value of target record's location
 	PrimaryIndex tempIndex; // Temporarily holds each PrimaryIndex object
 	vector<PrimaryIndex> indexes; // Holds all the PrimaryIndex objects converted from the primary index file
@@ -54,20 +54,43 @@ int search(int key)
 		indexFile.read((char *) &tempIndex, sizeof(PrimaryIndex)); // Read of binary primary index file
 	}
 
-	for (unsigned int i = 0; i < indexes.size(); i++)
-	{
-		if (indexes[i].getKey() == key) // Check if we've got a match
-		{	// Flip the found flag to true and break
-
-		}
-	}
-
 	indexFile.close(); // Terminate program/file connection with primary index file
 
-	if (found) // Target record was found
-		return location; // Return its relative record number
-	else // Record was NOT found
-		return -1; // Return -1 to indicate Record with target key wasn't found
+	insertionSort(indexes); // Call insertion sort function to sort the primary indexes
+
+	// Call binary search function to search the sorted vector of primary indexes, and return the location
+	location = binarySearch(indexes, key);
+
+	if (location != -1) // Target was found in the index file
+		return indexes[location].getRelativeRecordNumber(); // Return target's relative record number
+	else // Target record was not found
+		return location; // Return -1
+}
+
+/**
+ * Accepts a reference to a vector of PrimaryIndex objects
+ * Vector is sorted according to the key value, in ascending order using a basic insertion sort algorithm
+ */
+void insertionSort(vector<PrimaryIndex>& indexes)
+{
+	PrimaryIndex tempIndex; // Will temporarily hold IndexRecord object to be swapped
+	unsigned int i, j, len = indexes.size();
+
+	// Loop iterates over each element and sorts it using a naive insertion algorithm,
+	// beginning at array index 1
+	for (i = 1; i < len; i++)
+	{
+		j = i; // Pivot element number is the next unsorted index
+
+		// Inner loop checks adjacent elements and performs swaps until none remain
+		while (j > 0 && indexes[j - 1].getKey() > indexes[j].getKey())
+		{
+			tempIndex = indexes[j]; // Temporarily store element to be swapped
+			indexes[j] = indexes[j - 1]; // Swap lesser element to proper position
+			indexes[j - 1] = tempIndex; // Swap old element to new position
+			j -= 1; // Decrement j by one
+		}
+	}
 }
 
 /**
@@ -93,3 +116,4 @@ int binarySearch(const vector<PrimaryIndex>& indexes, int target)
 	}
 	return -1; // Target key wasn't found, return -1 to signify failure
 }
+
