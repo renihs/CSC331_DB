@@ -46,3 +46,39 @@ int main(int argc, char * argv[]){
 	}
 }
 
+
+
+/**
+ * Deletes record from the primary index file using the argument's key value
+ */
+void deleteFromPrimaryIndexFile(const int &key)
+{
+	// TODO: Read primary index file contents into memory and insert new PrimaryIndex object into the correct position
+	// Open primary index file as binary, opened in ios::app (append) mode with cursor set to the file end
+	fstream indexFile("primaryindex.idx", ios::binary | ios::out | ios::app | ios::ate);
+	if (indexFile.fail()) // If index output file was not successfully opened
+	{	// Inform user of file opening failure and exit program run
+		cout << "Index output file failed to open. Program is ending. Goodbye." << endl;
+		exit(1); // End program run with error value
+	}
+
+	int itemCount = 0;
+	bool found = false; // Flag for finding the target record
+		PrimaryIndex tempIndex; // Temporarily holds each PrimaryIndex object
+
+		// Loop reads each Index object into memory until end of file
+		while (!indexFile.eof() || !found)
+		{
+			if (tempIndex.getKey() == key)
+				{
+					tempIndex.setKey(-1);
+				}
+			indexFile.seekp(sizeof(PrimaryIndex)*itemCount);//reset pointer to start of record
+			indexFile.write((char*) & tempIndex, sizeof(PrimaryIndex));
+			indexFile.read((char *) &tempIndex, sizeof(PrimaryIndex)); // Priming read of binary primary index file
+			itemCount++;
+		}
+
+			indexFile.close(); // Terminate program/file connection with primary index file
+}
+
