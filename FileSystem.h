@@ -60,10 +60,12 @@ public:
 
 
 // Function prototypes
-
 void updatePrimaryIndexFile(const int& key, const int& relativeRecordNumber); // Updates the primary index file using the argument values
+
 int search(int key); // Function searches the index file for the target primary key and returns the index record's RRN
 int binarySearch(const std::vector<PrimaryIndex>& indexes, int target); // Called by search function to perform actual search using binary search algorithm
 void insertionSort(std::vector<PrimaryIndex>& indexes); // Called by search function to perform an insertion sort on the PrimaryIndex objects
+
+void deleteFromPrimaryIndexFile(const int &key); // Deletes record from the primary index file using the argument's key value
 
 #endif /* FILESYSTEM_H_ */

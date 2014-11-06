@@ -3,11 +3,14 @@
  * Author: Sarah Nolasco
  * Account #23
  * Created: 10/31/2014
- * Completed: TODO
+ * Completed: 11/01/2014
  * Purpose: CSC 331 File System Term Project
  * Utilizes primary and secondary keys along with an index file to create and
  * maintain a database-like information management system
  *
+ * Holds information representing a data record constituting the stored information
+ * used in our database-like information management system. These objects are stored
+ * as binary data in a file for later retrieval/deletion/modification.
  */
 
 // Preprocessor directives
