@@ -12,6 +12,7 @@
 // Preprocessor directives
 #include <iostream> // Basic (console) I/O functionality
 #include <fstream> // For file I/O to read input file
+#include <sstream>// for reading user input
 #include <cstdlib> // For use of exit
 #include <string> // Needed to use string objects
 #include <vector> // For reading in variable number of index files
