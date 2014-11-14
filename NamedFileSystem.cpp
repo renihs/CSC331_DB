@@ -80,7 +80,7 @@ int main(int argc, char * argv[])
 				string code;
 				iss>>code;
 				string cost;
-				iss>>cost
+				iss>>cost;
 				addItem(atoi(addkey.c_str()), addname, atoi(code.c_str()), atof(cost.c_str()) );
 			}
 			break;
@@ -249,7 +249,7 @@ int mod( int key, string datalabel, string newdata)
 }
 
 
-int add(int key, string name, int code, float cost)
+int addItem(int key, string name, int code, float cost)
 {
 	ifstream fileExists("file.bin", ios::in | ios::binary);
 	
